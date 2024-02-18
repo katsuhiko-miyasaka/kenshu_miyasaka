@@ -1,0 +1,71 @@
+■ローカルリポジトリ(.git)作成コマンド
+git init
+git init フォルダ名
+
+■gitの設定をするコマンド
+git config --global　→PCログインユーザーが所持する全てのローカルリポジトリに対しての設定
+git config --local　→各ローカルリポジトリ固有の設定
+●実用コマンド
+git config --global user.name "GitHubユーザー名"
+git config --global user.email "GitHubに登録したメールアドレス"
+git config --global list　→実ファイル"C:\Users\socce\.gitconfig"
+git config --local list　→実ファイル".git/config"
+●リモートリポジトリに関する情報を設定するコマンド→実ファイル".git/config"
+git remote add origin リモートリポジトリURL
+git remote rm origin　→設定を消す
+
+■リモートリポジトリをコピーして、ローカルリポジトリを作る
+git clone リモートリポジトリURL
+
+■基本コマンド
+git status
+→変更ファイルの有無、未済コミットの有無を確認する
+git add ファイル名
+git add .
+→圧縮ファイルを新規作成してindexに登録する。(ステージングする)
+　ファイルが削除されていた場合はindexから削除する。
+git commit
+git commit -m "コミットメッセージ"
+→コミットを登録する。Gitはコミット単位でバージョンを管理する。
+git push origin ブランチ名
+git push origin --all
+→ローカルリポジトリの内容をリモートリポジトリに反映させる。
+※originはgit remote add origin リモートリポジトリURL　を実行した後なら使用可能
+　それ以前はgit push リモートリポジトリURL ブランチ名
+
+■コミット履歴を確認するコマンド
+git log →コミット履歴を表示する。
+git log --oneline　→各コミットを1行で表示する。コミットのハッシュ値が省略されるけど省略されたハッシュ値でも使用可能。qで抜ける。
+git log --oneline -n 行数　→表示する行数を指定できる。
+git log ブランチ名　→指定したブランチのコミット履歴を表示する。
+
+■ファイル確認系のコマンド
+●indexを確認する
+git ls-files --stage
+●ハッシュ値で管理されているファイルを確認する
+git cat-file -p ハッシュ値
+●コンフリクトが起きているファイルを確認する(同じファイルが複数表示される)
+git ls-files -u
+
+
+■ブランチ関連コマンド
+git branch
+git branch -a
+git branch ブランチ名
+git branch -d ブランチ名
+git branch -D ブランチ名
+git checkout ブランチ名
+git checkout コミット -b ブランチ名
+git switch ブランチ名
+
+■マージ関連
+git fetch origin リモートにあるブランチ名
+git merge origin ブランチ名
+
+■おまけ
+git tag
+git reset -hard HEAD^
+git reset HEAD^
+git reset -soft HEAD^
+git revert コミット
+git pull origin リモートにあるブランチ名
